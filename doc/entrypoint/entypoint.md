@@ -41,7 +41,7 @@ This is equivalent to the exec form but uses the shell to execute the command.
 
 The CMD instruction provides default arguments for the `ENTRYPOINT command`. These arguments can be overridden when running the container.
 
-```yml
+```dockerfile
 # Dockerfile
 
 ENTRYPOINT ["python", "-m", "my_module"]
@@ -55,5 +55,5 @@ However, you can override the arguments:
 ```bash
 docker run my_image --arg1 new_value --arg2 new_value
 ```
-> This will execute python -m my_module --arg1 new_value --arg2 new_value
 
+> This will execute python -m my_module --arg1 new_value --arg2 new_value

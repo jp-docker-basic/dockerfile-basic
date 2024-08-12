@@ -18,7 +18,6 @@ CMD command args
 - `Default Command`: If no command is specified when running the container, the `CMD` instruction is executed.
 - `Multiple CMD`: Only the last CMD instruction in the `Dockerfile` is used.
 
-
 ### Example
 
 ```Dockerfile
