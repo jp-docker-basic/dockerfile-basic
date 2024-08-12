@@ -23,5 +23,3 @@ RUN npm install
 - `Absolute Paths`: The path specified in `WORKDIR` is always an absolute path within the container's filesystem.
 - `Relative Paths`: You can use relative paths within subsequent commands, but they will be relative to the WORKDIR.
 - `Directory Creation`: If the specified directory doesn't exist, it will be created.
-
-
