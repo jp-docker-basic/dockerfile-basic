@@ -26,5 +26,26 @@ FROM ubuntu:latest
 RUN apt-get update && apt-get install -y curl
 
 CMD ["curl", "http://example.com"]
-
 ```
+
+### This Dockerfile will:
+
+- Use the ubuntu:latest image as a base.
+- Update the package lists and install curl.
+- Set the default command to curl http://example.com.
+
+When you run the container without any additional arguments:
+
+```Bash
+docker run my_image
+```
+
+#### Overriding the CMD
+
+You can override the CMD instruction when running the container:
+
+```Bash
+docker run my_image curl https://www.google.com
+```
+
+In this case, the curl https://www.google.com command will be executed instead of the default curl http://example.com.
