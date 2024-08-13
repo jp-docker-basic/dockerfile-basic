@@ -35,7 +35,31 @@ CMD ["./myapp"]
 ### Explanation
 
 #### 1. Creating a User and Group:
+
 In the example, groupadd and useradd are used to create a new group and user within the container.
 
 #### 2. Switching User:
+
 USER myuser:mygroup changes the user to myuser and the group to mygroup. This means that any subsequent instructions in the Dockerfile and the running application will execute as this user.
+
+## Key Points
+
+### 1. Security:
+
+Running processes as a `non-root` user is a security best practice. This minimizes the risk of privilege escalation and potential security vulnerabilities.
+
+### 2. File Permissions:
+
+Ensure that the files and directories used by your application have appropriate permissions for the specified user. If the `USER` instruction is set but the files are owned by root or another user, you may run into permission issues.
+
+### 3. Effect on Instructions:
+
+The USER instruction affects all subsequent instructions in the Dockerfile. For example, `RUN`, `CMD`, and `ENTRYPOINT` will all be executed as the specified `user`.
+
+### 4. Default User:
+
+If you don't specify a USER, Docker containers typically run as the `root user` by default.
+
+### 5.Switching Back to Root:
+
+You can use another `USER` instruction to switch back to root or to a different user later in the Dockerfile if needed.
