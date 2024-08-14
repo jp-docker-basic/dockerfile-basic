@@ -121,3 +121,16 @@ For improved security, avoid running your application as the root user.
 RUN useradd -ms /bin/sh appuser
 USER appuser
 ```
+
+## 5. Examples
+### 5.1 Installing Packages
+
+```Dockerfile
+FROM ubuntu:20.04
+
+RUN apt-get update && \
+    apt-get install -y \
+        build-essential \
+        curl \
+        && rm -rf /var/lib/apt/lists/*
+```
