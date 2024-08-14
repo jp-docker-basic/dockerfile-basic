@@ -166,3 +166,21 @@ RUN apt-get update && \
 
 - **`Use Intermediate Containers`**: Add temporary commands to debug build issues.
 - **`Check Build Logs`**: Review logs to identify where commands might be failing.
+
+## 7. Advanced Usage
+
+### 7.1 Using Build Arguments
+
+```Dockerfile
+ARG VERSION=latest
+RUN curl -o myapp.tar.gz "https://example.com/myapp-${VERSION}.tar.gz"
+```
+
+- Use `ARG` to specify build-time variables.
+
+## 7.2 Complex Commands
+
+```Dockerfile
+RUN bash -c "source /etc/profile && make install"
+```
+- Use `bash -c` for complex shell commands that require a full shell environment.
