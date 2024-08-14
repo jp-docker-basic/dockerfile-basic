@@ -43,12 +43,14 @@ RUN apt-get update && \
     apt-get install -y curl && \
     rm -rf /var/lib/apt/lists/*
 ```
+
 - `&&` ensures that each command runs only if the previous one succeeds.
 - Cleaning up temporary files (like `/var/lib/apt/lists/*`) reduces image size.
 
 ## 4. Best Practices
 
 ### 4.1 Minimize Layers
+
 Combine commands to reduce the number of layers, which helps in keeping the image size smaller.
 
 ```Dockerfile
@@ -59,4 +61,12 @@ RUN apt-get update && \
         vim \
         git && \
     rm -rf /var/lib/apt/lists/*
+```
+
+### 4.2 Use Official Base Images
+
+Choose well-maintained and official base images to ensure stability and security.
+
+```Dockerfile
+FROM python:3.10-slim
 ```
