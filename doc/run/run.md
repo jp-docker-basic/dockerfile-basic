@@ -9,5 +9,26 @@ Here’s a detailed guide to using RUN effectively in Dockerfiles:
 ```Dockerfile
 RUN <command>
 ```
+
 - Executes the specified command in the shell of the base image.
 - Each RUN instruction creates a new layer in the Docker image.
+
+## 2. Types of RUN Instructions
+
+### 2.1 Shell Form
+
+```Dockerfile
+RUN apt-get update && apt-get install -y curl
+```
+
+- Executes the command using the shell (`/bin/sh -c` by default).
+- Suitable for simple commands and chaining multiple commands.
+
+### 2.2 Exec Form
+
+```Dockerfile
+RUN ["apt-get", "update"]
+RUN ["apt-get", "install", "-y", "curl"]
+```
+- Executes the command directly without a shell.
+- Avoids shell processing and is useful for commands with complex quoting or for avoiding shell-specific features.
