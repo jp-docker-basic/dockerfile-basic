@@ -45,3 +45,18 @@ RUN apt-get update && \
 ```
 - `&&` ensures that each command runs only if the previous one succeeds.
 - Cleaning up temporary files (like `/var/lib/apt/lists/*`) reduces image size.
+
+## 4. Best Practices
+
+### 4.1 Minimize Layers
+Combine commands to reduce the number of layers, which helps in keeping the image size smaller.
+
+```Dockerfile
+
+RUN apt-get update && \
+    apt-get install -y \
+        curl \
+        vim \
+        git && \
+    rm -rf /var/lib/apt/lists/*
+```
