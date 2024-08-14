@@ -30,5 +30,18 @@ RUN apt-get update && apt-get install -y curl
 RUN ["apt-get", "update"]
 RUN ["apt-get", "install", "-y", "curl"]
 ```
+
 - Executes the command directly without a shell.
 - Avoids shell processing and is useful for commands with complex quoting or for avoiding shell-specific features.
+
+## 3. Combining Commands
+
+To minimize the number of layers and keep the Docker image size small, combine multiple commands using `&&`:
+
+```Dockerfile
+RUN apt-get update && \
+    apt-get install -y curl && \
+    rm -rf /var/lib/apt/lists/*
+```
+- `&&` ensures that each command runs only if the previous one succeeds.
+- Cleaning up temporary files (like `/var/lib/apt/lists/*`) reduces image size.
