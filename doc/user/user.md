@@ -63,3 +63,32 @@ If you don't specify a USER, Docker containers typically run as the `root user` 
 ### 5.Switching Back to Root:
 
 You can use another `USER` instruction to switch back to root or to a different user later in the Dockerfile if needed.
+
+## Practical Example
+
+```Dockerfile
+FROM node:14
+
+# Create a non-root user
+RUN useradd -ms /bin/sh appuser
+
+# Set the user for the following instructions
+USER appuser
+
+# Copy application code and install dependencies
+WORKDIR /home/appuser/app
+COPY --chown=appuser:appuser . .
+
+# Install dependencies and build
+RUN npm install
+RUN npm run build
+
+# Command to run the application
+CMD ["npm", "start"]
+```
+
+In this example:
+
+- A new `user` appuser is created and set as the user for subsequent instructions.
+- The COPY instruction uses `--chown` to ensure that the files are owned by appuser.
+- The application runs with the permissions of appuser, enhancing security.

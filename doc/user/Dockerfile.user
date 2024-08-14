@@ -1,0 +1,18 @@
+FROM node:14
+
+# Create a non-root user
+RUN useradd -ms /bin/sh appuser
+
+# Set the user for the following instructions
+USER appuser
+
+# Copy application code and install dependencies
+WORKDIR /home/appuser/app
+COPY --chown=appuser:appuser . .
+
+# Install dependencies and build
+RUN npm install
+RUN npm run build
+
+# Command to run the application
+CMD ["npm", "start"]
