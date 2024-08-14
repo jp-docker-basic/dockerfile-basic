@@ -82,3 +82,32 @@ RUN set -e && \
 ```
 
 - `set -e` ensures that the build stops if any command fails.
+
+### 4.4 Use Caching Efficiently
+
+Docker caches the results of RUN instructions. Organize commands to leverage caching effectively:
+
+```Dockerfile
+# Install dependencies
+RUN apt-get update && \
+    apt-get install -y \
+        build-essential \
+        libffi-dev
+
+# Copy and install application
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+```
+
+- Frequently changing commands should be placed later to maximize cache efficiency.
+
+### 4.5 Avoid Installing Unnecessary Packages
+
+Only install what’s necessary to keep the image lean and secure.
+
+```Dockerfile
+RUN apt-get update && \
+    apt-get install -y \
+        curl \
+        && rm -rf /var/lib/apt/lists/*
+```
