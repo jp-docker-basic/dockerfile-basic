@@ -149,3 +149,15 @@ COPY . .
 RUN npm install && \
     npm run build
 ```
+
+### 5.3 Multi-Line Commands
+
+```Dockerfile
+RUN apt-get update && \
+    apt-get install -y \
+        git \
+        wget && \
+    wget https://example.com/file && \
+    tar -xvf file && \
+    rm file
+```
