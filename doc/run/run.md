@@ -161,3 +161,8 @@ RUN apt-get update && \
     tar -xvf file && \
     rm file
 ```
+
+## 6. Debugging Tips
+
+- **`Use Intermediate Containers`**: Add temporary commands to debug build issues.
+- **`Check Build Logs`**: Review logs to identify where commands might be failing.
