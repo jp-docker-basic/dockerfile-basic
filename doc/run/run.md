@@ -111,3 +111,13 @@ RUN apt-get update && \
         curl \
         && rm -rf /var/lib/apt/lists/*
 ```
+
+### 4.6 Use Non-Root Users
+
+For improved security, avoid running your application as the root user.
+
+```Dockerfile
+# Create a non-root user
+RUN useradd -ms /bin/sh appuser
+USER appuser
+```
