@@ -123,6 +123,7 @@ USER appuser
 ```
 
 ## 5. Examples
+
 ### 5.1 Installing Packages
 
 ```Dockerfile
@@ -133,4 +134,18 @@ RUN apt-get update && \
         build-essential \
         curl \
         && rm -rf /var/lib/apt/lists/*
+```
+
+### 5.2 Building from Source
+
+```Dockerfile
+
+FROM node:14
+
+WORKDIR /app
+
+COPY . .
+
+RUN npm install && \
+    npm run build
 ```
