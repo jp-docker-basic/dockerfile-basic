@@ -70,3 +70,15 @@ Choose well-maintained and official base images to ensure stability and security
 ```Dockerfile
 FROM python:3.10-slim
 ```
+
+### 4.3 Handle Errors Gracefully
+
+Ensure commands handle errors appropriately to avoid build failures.
+
+```Dockerfile
+RUN set -e && \
+    apt-get update && \
+    apt-get install -y curl
+```
+
+- `set -e` ensures that the build stops if any command fails.
